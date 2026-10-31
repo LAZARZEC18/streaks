@@ -1,138 +1,365 @@
 <!doctype html>
-<html lang="en-AU">
+<html lang="en-AU" data-app="streaks">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Streaks: habit tracker with a year heatmap</title>
-  <meta name="description" content="Track daily and weekly habits, keep your streaks alive, and see your whole year as a contribution-style heatmap. Works offline and saves on your device.">
-  <meta name="theme-color" content="#F3F5F7" id="theme-color">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Streaks">
-  <meta property="og:description" content="A habit tracker with streaks and a year heatmap of everything you got done.">
-  <meta property="og:url" content="https://lazarzec18.github.io/streaks/">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23E8A100'/%3E%3Cg fill='%2315202B'%3E%3Crect x='7' y='7' width='5' height='5' rx='1.5' opacity='.35'/%3E%3Crect x='13.5' y='7' width='5' height='5' rx='1.5'/%3E%3Crect x='20' y='7' width='5' height='5' rx='1.5' opacity='.6'/%3E%3Crect x='7' y='13.5' width='5' height='5' rx='1.5'/%3E%3Crect x='13.5' y='13.5' width='5' height='5' rx='1.5' opacity='.6'/%3E%3Crect x='20' y='13.5' width='5' height='5' rx='1.5'/%3E%3Crect x='7' y='20' width='5' height='5' rx='1.5' opacity='.6'/%3E%3Crect x='13.5' y='20' width='5' height='5' rx='1.5'/%3E%3Crect x='20' y='20' width='5' height='5' rx='1.5' opacity='.35'/%3E%3C/g%3E%3C/svg%3E">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Instrument+Sans:wght@400..600&display=swap">
-  <script>
-    try {
-      var t = localStorage.getItem('streaks:theme');
-      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
-    } catch (e) {}
-  </script>
-  <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Streaks — a habit tracker you'll use every day</title>
+<meta name="description" content="Check off daily habits in a tap, count glasses and reps, set weekly goals, and see your year fill in. Streaks, notes, insights and reminders, saved on your device.">
+<meta property="og:title" content="Streaks">
+<meta property="og:description" content="Check off daily habits in a tap, count glasses and reps, set weekly goals, and see your year fill in.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://lz-streaks.pages.dev/">
+<meta property="og:image" content="https://lz-streaks.pages.dev/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="zl.css">
+<link rel="stylesheet" href="styles.css">
+<script src="zl.js"></script>
 </head>
-<body>
-  <a class="skip" href="#habits-h">Skip to your habits</a>
+<body id="top">
+<div data-zl="nav"></div>
 
-  <header class="topbar">
-    <div class="brand">
-      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="bm-bg" width="32" height="32" rx="9"/><g fill="#15202B"><rect x="7" y="7" width="5" height="5" rx="1.5" opacity=".35"/><rect x="13.5" y="7" width="5" height="5" rx="1.5"/><rect x="20" y="7" width="5" height="5" rx="1.5" opacity=".6"/><rect x="7" y="13.5" width="5" height="5" rx="1.5"/><rect x="13.5" y="13.5" width="5" height="5" rx="1.5" opacity=".6"/><rect x="20" y="13.5" width="5" height="5" rx="1.5"/><rect x="7" y="20" width="5" height="5" rx="1.5" opacity=".6"/><rect x="13.5" y="20" width="5" height="5" rx="1.5"/><rect x="20" y="20" width="5" height="5" rx="1.5" opacity=".35"/></g></svg>
-      <div>
-        <h1 class="wordmark">Streaks</h1>
-        <p class="tagline">Check off your habits each day and watch the year fill in.</p>
+<main>
+  <section class="zl-hero zl-wrap">
+    <div data-zl="icon"></div>
+    <h1>Streaks</h1>
+    <p class="zl-tagline">Small habits, kept every day.</p>
+    <p class="zl-sub">Tick off habits in a tap, count the glasses and the reps, and set goals for a few times a week. Streaks shows your year at a glance and tells you what is slipping.</p>
+    <div class="zl-hero-ctas">
+      <a class="zl-btn zl-btn-primary zl-btn-lg" href="#app">Start tracking</a>
+      <a class="zl-btn zl-btn-secondary zl-btn-lg" href="#how">See how it works</a>
+    </div>
+    <div class="zl-hero-meta">
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Free, no sign-up</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Saved on your device</span>
+      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Export a backup any time</span>
+    </div>
+  </section>
+
+  <section class="zl-stage" id="app" data-nav="App">
+    <div class="zl-wrap">
+      <div class="zl-app" id="app-frame">
+        <div class="zl-appbar">
+          <div class="zl-appbar-title"><span class="zl-dot"></span><span id="bar-title">Today</span> <span class="zl-appbar-status" id="status" aria-live="polite">No habits yet</span></div>
+          <button type="button" class="zl-btn zl-btn-secondary zl-btn-sm" id="btn-example">Load example</button>
+          <button type="button" class="zl-btn zl-btn-primary zl-btn-sm" id="btn-new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>New habit</button>
+        </div>
+
+        <!-- TODAY -->
+        <div id="view-today" class="view">
+          <div class="today-grid">
+            <div class="today-main">
+              <div class="today-hero" id="today-hero">
+                <div class="ring-wrap">
+                  <svg class="ring" id="ring" viewBox="0 0 160 160" aria-hidden="true">
+                    <defs><linearGradient id="ring-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" class="ring-stop-a"/><stop offset="1" class="ring-stop-b"/></linearGradient></defs>
+                    <circle class="ring-track" cx="80" cy="80" r="68"/>
+                    <circle class="ring-fill" id="ring-fill" cx="80" cy="80" r="68" pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"/>
+                  </svg>
+                  <div class="ring-center" role="img" id="ring-label" aria-label="No habits due today"><b id="ring-pct" class="num">0%</b><span id="ring-sub">done today</span></div>
+                </div>
+                <div class="today-text">
+                  <p class="today-kicker" id="today-weekday">Today</p>
+                  <h2 class="today-date" id="today-date">—</h2>
+                  <p class="today-line" id="today-line" aria-live="polite">Add a habit to get started.</p>
+                </div>
+              </div>
+
+              <ul id="habit-list" class="habit-list" aria-label="Today's habits"></ul>
+
+              <div id="today-empty" class="zl-empty today-empty" hidden>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+                <h3>No habits yet</h3>
+                <p>Add one thing you want to do every day, or load the example to see a few months of history.</p>
+                <div class="empty-actions">
+                  <button type="button" class="zl-btn zl-btn-primary" id="empty-new">New habit</button>
+                  <button type="button" class="zl-btn zl-btn-secondary" id="empty-example">Load example</button>
+                </div>
+              </div>
+
+              <details class="archived" id="archived" hidden>
+                <summary><span id="archived-label">Archived</span></summary>
+                <ul id="archived-list" class="archived-list"></ul>
+              </details>
+            </div>
+
+            <aside class="today-aside" id="insights" aria-labelledby="ins-h">
+              <div class="aside-head"><h3 id="ins-h">Insights</h3><span class="aside-sub">From your own check-ins</span></div>
+              <div id="ins-body" class="ins-body" aria-live="polite"></div>
+            </aside>
+          </div>
+
+          <section class="heat-card" id="heat" aria-labelledby="heat-h">
+            <div class="heat-head">
+              <div>
+                <h3 id="heat-h">Your year</h3>
+                <p class="heat-summary" id="heat-summary" aria-live="polite"></p>
+              </div>
+              <div class="zl-field heat-filter">
+                <label class="zl-label" for="heat-filter">Show</label>
+                <select class="zl-select" id="heat-filter"><option value="all">All habits</option></select>
+              </div>
+            </div>
+            <div class="heat-scroll" id="heat-scroll">
+              <div class="heat">
+                <div class="heat-months" id="heat-months" aria-hidden="true"></div>
+                <div class="heat-days" aria-hidden="true"><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span><span></span></div>
+                <div class="heat-grid" id="heat-grid" role="grid" aria-label="Check-ins per day over the last year. Use the arrow keys to move between days, Enter to open a day."></div>
+              </div>
+            </div>
+            <div class="heat-foot">
+              <p class="zl-hint">Select any day to see it or fix a missed check-in.</p>
+              <div class="legend" aria-hidden="true"><span>Less</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>More</span></div>
+            </div>
+            <div class="heat-day" id="heat-day" hidden aria-live="polite"></div>
+          </section>
+
+          <div class="tools-grid">
+            <section class="tool-card" id="reminders" aria-labelledby="rem-h">
+              <div class="tool-icon" id="rem-icon"></div>
+              <div class="tool-text">
+                <h3 id="rem-h">Reminders</h3>
+                <p>Get a nudge at the time you set on a habit. Reminders work while Streaks is open in a browser tab.</p>
+                <p class="tool-state" id="notif-state" aria-live="polite"></p>
+              </div>
+              <button type="button" class="zl-btn zl-btn-secondary zl-btn-sm" id="btn-notif">Turn on notifications</button>
+            </section>
+            <section class="tool-card" id="backup" aria-labelledby="bak-h">
+              <div class="tool-icon" id="bak-icon"></div>
+              <div class="tool-text">
+                <h3 id="bak-h">Backup</h3>
+                <p>Everything is saved in this browser. Export a JSON file to keep a copy or move to another device.</p>
+                <p class="zl-error" id="import-error" role="alert" hidden></p>
+              </div>
+              <div class="tool-actions">
+                <button type="button" class="zl-btn zl-btn-secondary zl-btn-sm" id="btn-export">Export</button>
+                <button type="button" class="zl-btn zl-btn-secondary zl-btn-sm" id="btn-import">Import</button>
+                <input type="file" id="import-file" accept="application/json,.json" hidden>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- HABIT DETAIL -->
+        <div id="view-detail" class="view detail" hidden>
+          <div class="detail-head">
+            <button type="button" class="zl-btn zl-btn-ghost zl-btn-sm back-btn" id="detail-back"><span id="back-ic"></span>Today</button>
+            <div class="detail-id">
+              <div class="habit-tile" id="d-icon"></div>
+              <div class="detail-names">
+                <h2 id="d-name">Habit</h2>
+                <p id="d-meta"></p>
+              </div>
+            </div>
+            <div class="detail-actions">
+              <button type="button" class="zl-btn zl-btn-secondary zl-btn-sm" id="d-edit">Edit</button>
+              <button type="button" class="zl-btn zl-btn-secondary zl-btn-sm" id="d-archive">Archive</button>
+              <button type="button" class="zl-btn zl-btn-danger zl-btn-sm" id="d-delete">Delete</button>
+            </div>
+          </div>
+
+          <div class="stat-row" id="d-stats">
+            <div class="stat-tile hero-stat"><span class="stat-label">Current streak</span><b class="num" id="d-current">0</b><span class="stat-unit" id="d-current-unit">days</span></div>
+            <div class="stat-tile"><span class="stat-label">Longest streak</span><b class="num" id="d-longest">0</b><span class="stat-unit" id="d-longest-unit">days</span></div>
+            <div class="stat-tile"><span class="stat-label">Total check-ins</span><b class="num" id="d-total">0</b><span class="stat-unit">days done</span></div>
+            <div class="stat-tile rates" id="d-rates">
+              <span class="stat-label">Completion</span>
+              <div class="rate" id="d-r30"></div>
+              <div class="rate" id="d-r90"></div>
+              <div class="rate" id="d-r365"></div>
+            </div>
+          </div>
+
+          <div class="detail-grid">
+            <section class="panel cal" aria-labelledby="cal-label">
+              <div class="cal-head">
+                <button type="button" class="round-btn" id="cal-prev" aria-label="Previous month"></button>
+                <h3 id="cal-label" aria-live="polite">Month</h3>
+                <button type="button" class="round-btn" id="cal-next" aria-label="Next month"></button>
+              </div>
+              <div class="cal-dow" aria-hidden="true"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+              <div class="cal-grid" id="cal-grid" role="group" aria-label="Days of the month"></div>
+              <p class="zl-hint cal-hint" id="cal-hint">Select a day, then tap it again to check it off. Notes go below.</p>
+            </section>
+            <section class="panel day-editor" id="day-editor" aria-labelledby="de-title">
+              <p class="de-kicker" id="de-kicker">Selected day</p>
+              <h3 id="de-title">Today</h3>
+              <div id="de-control" class="de-control"></div>
+              <div class="zl-field de-note">
+                <label class="zl-label" for="de-note">Note</label>
+                <textarea class="zl-textarea" id="de-note" maxlength="500" placeholder="How did it go? Anything worth remembering?"></textarea>
+                <span class="zl-hint" id="de-note-hint">Up to 500 characters. Notes are included in your backup.</span>
+              </div>
+              <div class="de-note-actions">
+                <button type="button" class="zl-btn zl-btn-primary zl-btn-sm" id="de-save">Save note</button>
+                <button type="button" class="zl-btn zl-btn-ghost zl-btn-sm" id="de-clear" hidden>Remove note</button>
+              </div>
+            </section>
+          </div>
+
+          <div class="chart-grid">
+            <section class="panel" aria-labelledby="wk-h">
+              <div class="panel-head"><h3 id="wk-h">By weekday</h3><span class="panel-sub" id="wk-sub">Last 12 months</span></div>
+              <div class="chart" id="chart-weekday"></div>
+            </section>
+            <section class="panel" aria-labelledby="mo-h">
+              <div class="panel-head"><h3 id="mo-h">Last 12 months</h3><span class="panel-sub">Completion each month</span></div>
+              <div class="chart" id="chart-months"></div>
+            </section>
+          </div>
+
+          <section class="panel notes-panel" aria-labelledby="notes-h">
+            <div class="panel-head"><h3 id="notes-h">Notes</h3><span class="panel-sub" id="notes-sub"></span></div>
+            <ul class="notes-list" id="d-notes"></ul>
+          </section>
+        </div>
       </div>
     </div>
-    <button type="button" class="icon-btn theme-toggle" id="theme-toggle" aria-label="Switch to dark theme">
-      <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
-      <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-    </button>
-  </header>
+  </section>
 
-  <main>
-    <div class="tool">
-      <section class="year" aria-labelledby="year-h">
-        <div class="year-head">
-          <div class="today-stat">
-            <span class="today-num" id="today-num">0<span class="of">/0</span></span>
-            <span class="today-label" id="today-label">done today</span>
-          </div>
-          <div class="year-meta">
-            <h2 id="year-h">Your year</h2>
-            <p class="muted" id="year-summary"></p>
-          </div>
-        </div>
-        <div class="heat-scroll" id="heat-scroll">
-          <div class="heat" id="heat">
-            <div class="heat-months" id="heat-months" aria-hidden="true"></div>
-            <div class="heat-days" aria-hidden="true"><span></span><span>Mon</span><span></span><span>Wed</span><span></span><span>Fri</span><span></span></div>
-            <div class="heat-grid" id="heat-grid" role="group" aria-label="Habits done per day over the last year. Use arrow keys to move between days."></div>
-          </div>
-        </div>
-        <div class="heat-foot">
-          <p class="muted day-hint" id="day-hint">Pick any day to see or change what you did.</p>
-          <div class="legend" aria-hidden="true">
-            <span>Less</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>More</span>
-          </div>
-        </div>
-        <div class="day-panel" id="day-panel" hidden aria-live="polite"></div>
-      </section>
-
-      <section class="habits-sec" aria-labelledby="habits-h">
-        <div class="habits-head">
-          <h2 id="habits-h">Habits</h2>
-          <div class="toolbar">
-            <button type="button" class="pill ghost" id="example-btn">Load example</button>
-            <button type="button" class="pill ghost" id="export-btn">Export backup</button>
-            <button type="button" class="pill ghost" id="import-btn">Import backup</button>
-            <input type="file" id="import-file" accept="application/json,.json" hidden>
-          </div>
-        </div>
-        <p class="error" id="io-error" role="alert"></p>
-        <ol class="habits" id="habits"></ol>
-
-        <div class="add-wrap">
-          <button type="button" class="pill primary" id="add-open" aria-expanded="false" aria-controls="habit-form">Add habit</button>
-          <form class="habit-form" id="habit-form" hidden novalidate>
-            <h3 id="form-title">New habit</h3>
-            <div class="field">
-              <label for="h-name">Habit</label>
-              <input id="h-name" type="text" maxlength="40" placeholder="Like: Read 20 pages" autocomplete="off">
-            </div>
-            <fieldset class="field">
-              <legend>Icon</legend>
-              <div class="emoji-pick" id="emoji-pick"></div>
-            </fieldset>
-            <fieldset class="field">
-              <legend>Target</legend>
-              <div class="target-row">
-                <div class="segmented" id="target-type">
-                  <label><input type="radio" name="ttype" value="daily" checked><span>Every day</span></label>
-                  <label><input type="radio" name="ttype" value="weekly"><span>Times per week</span></label>
-                </div>
-                <label class="times" id="times-wrap" hidden>
-                  <span class="sr-only">Times per week</span>
-                  <select id="h-times">
-                    <option value="1">1 a week</option><option value="2">2 a week</option><option value="3" selected>3 a week</option>
-                    <option value="4">4 a week</option><option value="5">5 a week</option><option value="6">6 a week</option>
-                  </select>
-                </label>
-              </div>
-            </fieldset>
-            <p class="error" id="form-error" role="alert"></p>
-            <div class="form-actions">
-              <button type="submit" class="pill primary" id="form-submit">Add habit</button>
-              <button type="button" class="pill ghost" id="form-cancel">Cancel</button>
-            </div>
-          </form>
-        </div>
-
-        <details class="archived" id="archived" hidden>
-          <summary id="archived-sum">Archived</summary>
-          <ul class="archived-list" id="archived-list"></ul>
-        </details>
-      </section>
+  <section class="zl-section alt" id="how" data-nav="How it works">
+    <div class="zl-wrap">
+      <div class="zl-section-head zl-reveal"><h2>Three habits of a good habit tracker.</h2><p>Fast to tick off, honest about streaks, and clear about what to do next.</p></div>
+      <div class="zl-steps zl-reveal">
+        <div class="zl-step"><h3>Add a habit</h3><p>Pick a yes or no habit, a daily count like eight glasses of water, or a goal for a few times a week.</p></div>
+        <div class="zl-step"><h3>Check in each day</h3><p>One tap ticks it off. Count habits fill up with every press of plus. Missed one yesterday? Fix it on the calendar.</p></div>
+        <div class="zl-step"><h3>See the pattern</h3><p>Your year heatmap, streaks and weekday charts show what is sticking, and Insights flags the habit that is slipping.</p></div>
+      </div>
     </div>
-  </main>
+  </section>
 
-  <div class="tip" id="tip" role="presentation" aria-hidden="true"></div>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <section class="zl-section" id="features" data-nav="Features">
+    <div class="zl-wrap">
+      <div class="zl-section-head zl-reveal"><h2>Everything a habit needs.</h2><p>Nothing it doesn't. No account, no ads, no streak-shaming.</p></div>
+      <div class="zl-bento zl-reveal">
+        <div class="zl-tile wide">
+          <h3>A year at a glance.</h3>
+          <p>Every day of the last 12 months in one grid. Brighter squares mean more done. Filter it to one habit to see just that streak.</p>
+          <div class="zl-tile-visual"><div class="mini-heat" id="mini-heat" aria-hidden="true"></div></div>
+        </div>
+        <div class="zl-tile">
+          <h3>Count, not just tick.</h3>
+          <p>Glasses, pages, push-ups. The day is done when you reach your goal.</p>
+          <div class="zl-tile-visual mini-count" aria-hidden="true">
+            <div class="mc-row"><span class="mc-name">Drink water</span><span class="mc-val num">6<small> / 8</small></span></div>
+            <div class="mc-bar"><i style="width:75%"></i></div>
+            <div class="mc-steps"><span>−</span><span>+</span></div>
+          </div>
+        </div>
+        <div class="zl-tile">
+          <h3>Weekly goals.</h3>
+          <p>Gym three times a week? Rest days never break the streak.</p>
+          <div class="zl-tile-visual mini-week" aria-hidden="true">
+            <div class="mw-days"><i class="on">M</i><i>T</i><i class="on">W</i><i>T</i><i class="on">F</i><i>S</i><i>S</i></div>
+            <span class="mw-label">3 of 3 this week</span>
+          </div>
+        </div>
+        <div class="zl-tile wide">
+          <h3>Insights from your own data.</h3>
+          <p>Your best weekday, a consistency score, and the habit most at risk, worked out from real check-ins.</p>
+          <div class="zl-tile-visual mini-bars" aria-hidden="true">
+            <div><i style="height:62%"></i><span>M</span></div><div><i style="height:88%" class="best"></i><span>T</span></div><div><i style="height:74%"></i><span>W</span></div><div><i style="height:70%"></i><span>T</span></div><div><i style="height:52%"></i><span>F</span></div><div><i style="height:40%"></i><span>S</span></div><div><i style="height:46%"></i><span>S</span></div>
+          </div>
+        </div>
+        <div class="zl-tile half">
+          <div class="zl-tile-big num">21<small> days</small></div>
+          <h3>Streaks that wait for tonight.</h3>
+          <p>A streak that ran through yesterday stays alive until today is over, counted on your local calendar, so a 7am check-in in Perth never lands on the wrong day.</p>
+        </div>
+        <div class="zl-tile half">
+          <div class="mini-note" aria-hidden="true">
+            <div class="mn-bell"><span class="mn-dot"></span><b>Time for Meditate 10 min</b><small>Streaks · 7:00 am</small></div>
+            <div class="mn-file"><span>streaks-backup.json</span><small>5 habits · 812 check-ins · 8 notes</small></div>
+          </div>
+          <h3>Reminders, notes and backups.</h3>
+          <p>Set a reminder time, jot a note on any day, and export everything to a JSON file you own.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <footer class="footer">
-    Made by Lazar Zec. <a href="https://github.com/LAZARZEC18/streaks">Source on GitHub</a>
-  </footer>
+  <section class="zl-section alt" id="faq" data-nav="FAQ">
+    <div class="zl-wrap">
+      <div class="zl-section-head center zl-reveal"><h2>Questions</h2></div>
+      <div class="zl-faq zl-reveal">
+        <details><summary>How are streaks counted?</summary><div>A daily streak is the run of consecutive days you completed, counting back from today. If today isn't done yet, the streak through yesterday stays alive until midnight. Count habits only count a day once you reach the goal. Weekly habits count weeks, Monday to Sunday, where you hit your target.</div></details>
+        <details><summary>Why is a weekly habit sometimes left out of today's ring?</summary><div>A habit like "Gym, 3 times a week" isn't due every day. It joins today's ring when you do it, or when you need every remaining day of the week to reach the goal. Otherwise it shows as optional.</div></details>
+        <details><summary>Do reminders work when the tab is closed?</summary><div>No. Reminders work while Streaks is open in a browser tab, because a web page can't wake itself up. Keep it pinned in a tab and you'll get a notification at the time you set, or an in-page alert if notifications are off.</div></details>
+        <details><summary>Where is my data stored?</summary><div>Only in this browser, on this device. Nothing is uploaded. Clearing your browser data removes it, so export a backup now and then.</div></details>
+        <details><summary>How do I move to a new phone or laptop?</summary><div>Export a backup here, open Streaks on the other device and import the file. Every habit, check-in and note comes across.</div></details>
+        <details><summary>I forgot to tick yesterday. Can I fix it?</summary><div>Yes. Open the habit and select the day on its calendar, or pick the day on the year grid. Streaks update straight away.</div></details>
+      </div>
+    </div>
+  </section>
+</main>
 
-  <script src="logic.js"></script>
-  <script src="app.js"></script>
+<div data-zl="footer"></div>
+
+<dialog class="zl-dialog editor" id="editor" aria-labelledby="ed-title">
+  <form method="dialog" id="ed-form" novalidate>
+    <div class="zl-dialog-head"><h2 id="ed-title">New habit</h2><button type="button" class="zl-iconbtn" id="ed-x" aria-label="Close"></button></div>
+    <div class="zl-dialog-body ed-body">
+      <div class="zl-field">
+        <label class="zl-label" for="ed-name">Name</label>
+        <input class="zl-input" id="ed-name" maxlength="40" autocomplete="off" placeholder="Read 20 pages, drink water, gym" aria-describedby="ed-name-err">
+        <span class="zl-error" id="ed-name-err" hidden></span>
+      </div>
+      <div class="zl-field">
+        <span class="zl-label" id="ed-type-l">Type</span>
+        <div class="zl-seg" id="ed-type" role="group" aria-labelledby="ed-type-l">
+          <button type="button" data-type="check" aria-pressed="true">Yes or no</button>
+          <button type="button" data-type="count" aria-pressed="false">Count</button>
+          <button type="button" data-type="weekly" aria-pressed="false">Times a week</button>
+        </div>
+        <span class="zl-hint" id="ed-type-hint">Done or not done, once a day.</span>
+      </div>
+      <div class="ed-row" id="ed-count-row" hidden>
+        <div class="zl-field">
+          <label class="zl-label" for="ed-goal">Daily goal</label>
+          <input class="zl-input" id="ed-goal" type="number" inputmode="numeric" min="1" max="999" value="8" aria-describedby="ed-goal-err">
+          <span class="zl-error" id="ed-goal-err" hidden></span>
+        </div>
+        <div class="zl-field">
+          <label class="zl-label" for="ed-unit">Unit</label>
+          <input class="zl-input" id="ed-unit" maxlength="16" placeholder="glasses" autocomplete="off">
+        </div>
+      </div>
+      <div class="zl-field" id="ed-weekly-row" hidden>
+        <span class="zl-label" id="ed-times-l">Times per week</span>
+        <div class="zl-seg ed-times" id="ed-times" role="group" aria-labelledby="ed-times-l"></div>
+      </div>
+      <div class="zl-field">
+        <span class="zl-label" id="ed-icon-l">Icon</span>
+        <div class="icon-pick" id="ed-icons" role="radiogroup" aria-labelledby="ed-icon-l"></div>
+      </div>
+      <div class="zl-field">
+        <span class="zl-label" id="ed-color-l">Colour</span>
+        <div class="color-pick" id="ed-colors" role="radiogroup" aria-labelledby="ed-color-l"></div>
+      </div>
+      <div class="zl-field ed-remind">
+        <label class="zl-switch"><input type="checkbox" id="ed-remind"> Daily reminder</label>
+        <div class="ed-time" id="ed-time-row" hidden>
+          <label class="zl-label" for="ed-time">Time</label>
+          <input class="zl-input" id="ed-time" type="time" value="08:00">
+        </div>
+        <span class="zl-hint">Reminders work while Streaks is open in a browser tab.</span>
+      </div>
+    </div>
+    <div class="zl-dialog-foot">
+      <button type="button" class="zl-btn zl-btn-secondary" id="ed-cancel">Cancel</button>
+      <button type="submit" class="zl-btn zl-btn-primary" id="ed-save">Add habit</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="row-menu" id="row-menu" role="menu" hidden></div>
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script src="logic.js" defer></script>
+<script src="icons.js" defer></script>
+<script src="charts.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>
